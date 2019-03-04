@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Zamowienia.sql" />
@@ -72,5 +73,7 @@
     <Build Include="dbo\Tables\Kurierzy.sql" />
     <Build Include="dbo\Tables\Klienci.sql" />
     <Build Include="dbo\Tables\Kategorie.sql" />
+    <Build Include="dbo\Views\v_SzczegolyProduktow.sql" />
+    <Build Include="dbo\Views\v_AktualneZamowienia.sql" />
   </ItemGroup>
 </Project>
