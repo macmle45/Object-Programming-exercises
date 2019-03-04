@@ -60,6 +60,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Zamowienia.sql" />
@@ -75,5 +76,8 @@
     <Build Include="dbo\Tables\Kategorie.sql" />
     <Build Include="dbo\Views\v_SzczegolyProduktow.sql" />
     <Build Include="dbo\Views\v_AktualneZamowienia.sql" />
+    <Build Include="dbo\Functions\IleZamowienKlienta.sql" />
+    <Build Include="dbo\Functions\IleRezerwacjiKlienta.sql" />
+    <Build Include="dbo\Functions\IleProduktowPodKategoria.sql" />
   </ItemGroup>
 </Project>
