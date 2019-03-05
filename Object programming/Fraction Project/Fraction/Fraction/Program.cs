@@ -10,7 +10,13 @@ namespace Fraction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"{Fraction.Info()}");
+            Fraction two = new Fraction(4, 2);
+
+            
+            Console.WriteLine($"{two.ToString()}");
+
+
+            Console.WriteLine($"\n\n\n>>>\t{Fraction.Info()}\t<<<");
             Console.ReadKey();
         }
     }

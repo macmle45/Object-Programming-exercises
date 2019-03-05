@@ -27,9 +27,16 @@ namespace Fraction
         public static readonly Fraction Half = new Fraction(1, 2);
         public static readonly Fraction Quarter = new Fraction(1, 4);
 
+        //info about struct
         public static string Info()
         {
-            return "This is my first test implementation of fraction\n(c)macmle45 2019";
+            return "This is my first test implementation of fraction\t(c)macmle45 2019";
+        }
+
+        //override ToString methode
+        public override string ToString()
+        {
+            return $"{numerator.ToString()}/{denominator.ToString()}";
         }
     }
 }
