@@ -26,5 +26,10 @@ namespace Fraction
         public static readonly Fraction One = new Fraction(1);
         public static readonly Fraction Half = new Fraction(1, 2);
         public static readonly Fraction Quarter = new Fraction(1, 4);
+
+        public static string Info()
+        {
+            return "This is my first test implementation of fraction\n(c)macmle45 2019";
+        }
     }
 }

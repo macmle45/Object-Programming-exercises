@@ -10,6 +10,8 @@ namespace Fraction
     {
         static void Main(string[] args)
         {
+            Console.WriteLine($"{Fraction.Info()}");
+            Console.ReadKey();
         }
     }
 }
