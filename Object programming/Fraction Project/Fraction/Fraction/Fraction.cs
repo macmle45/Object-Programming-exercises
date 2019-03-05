@@ -33,10 +33,46 @@ namespace Fraction
             return "This is my first test implementation of fraction\t(c)macmle45 2019";
         }
 
-        //override ToString methode
+        //override ToString method
         public override string ToString()
         {
             return $"{numerator.ToString()}/{denominator.ToString()}";
+        }
+
+        //converting method
+        public double ToDouble()
+        {
+            return numerator / (double)denominator;
+        }
+
+        //euclids algorithm
+        public void SimplifyFraction()
+        {
+            int a = numerator;
+            int b = denominator;
+
+            int c;
+            while (b != 0)
+            {
+                c = a % b;
+                a = b;
+                b = c;
+            }
+
+            numerator /= a;
+            denominator /= a;
+
+            //sign
+            if ( numerator * denominator < 0)
+            {
+                numerator = -Math.Abs(numerator);
+                denominator = Math.Abs(denominator);
+            }
+            else
+            {
+                numerator = Math.Abs(numerator);
+                denominator = Math.Abs(denominator);
+            }
         }
     }
 }
