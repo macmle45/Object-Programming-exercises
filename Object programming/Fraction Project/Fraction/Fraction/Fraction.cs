@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fraction
 {
-    public struct Fraction
+    public struct Fraction : IComparable<Fraction>
     {
         //private fields
         private int numerator;
@@ -32,6 +32,14 @@ namespace Fraction
         {
             Numerator = numerator;
             Denominator = denominator;
+        }
+
+        //CompareTo method return values range {-1, 0, 1}
+        public int CompareTo(Fraction f)
+        {
+            double diff = this.ToDouble() - f.ToDouble();
+            if (diff != 0) diff /= Math.Abs(diff);
+            return (int)(diff);
         }
 
         //instances of Fraction struct
