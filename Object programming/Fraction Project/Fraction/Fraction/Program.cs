@@ -24,6 +24,8 @@ namespace Fraction
             Console.WriteLine($"Multiplication:\t{(f2 * f3).ToString()}");
             Console.WriteLine($"Divide:\t\t{(f2 / f3).ToString()}");
 
+            Console.WriteLine($"Comparison:\t{f2 == f3}");
+
 
             Console.WriteLine($"\n\n\n>>>\t{Fraction.Info()}\t<<<");
             Console.ReadKey();

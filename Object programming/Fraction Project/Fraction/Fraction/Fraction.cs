@@ -88,7 +88,7 @@ namespace Fraction
             }
         }
 
-        #region Operators
+        #region Arithmetic Operators
         //negative
         public static Fraction operator - (Fraction f)
         {
@@ -125,6 +125,51 @@ namespace Fraction
             Fraction result = new Fraction(f1.Numerator * f2.Denominator, f1.Denominator * f2.Numerator);
             result.SimplifyFraction();
             return result;
+        }
+        #endregion
+
+        #region Logic Operators
+
+        public static bool operator == (Fraction f1, Fraction f2)
+        {
+            return (f1.ToDouble() == f2.ToDouble());
+        }
+
+        public static bool operator != (Fraction f1, Fraction f2)
+        {
+            return !(f1 == f2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Fraction)) return false;
+            Fraction f = (Fraction)obj;
+            return (this == f);
+        }
+
+        public override int GetHashCode()
+        {
+            return Numerator ^ Denominator;
+        }
+
+        public static bool operator > (Fraction f1, Fraction f2)
+        {
+            return (f1.ToDouble() > f2.ToDouble());
+        }
+
+        public static bool operator >= (Fraction f1, Fraction f2)
+        {
+            return (f1.ToDouble() >= f2.ToDouble());
+        }
+
+        public static bool operator < (Fraction f1, Fraction f2)
+        {
+            return (f1.ToDouble() < f2.ToDouble());
+        }
+
+        public static bool operator <= (Fraction f1, Fraction f2)
+        {
+            return (f1.ToDouble() <= f2.ToDouble());
         }
         #endregion
     }
