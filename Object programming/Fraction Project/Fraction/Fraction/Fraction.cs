@@ -172,5 +172,21 @@ namespace Fraction
             return (f1.ToDouble() <= f2.ToDouble());
         }
         #endregion
+
+        #region Conversion Operators
+
+        //explicit conversion from Fraction to double
+        public static explicit operator double(Fraction f)
+        {
+            return f.ToDouble();
+        }
+
+        //implicit conversion from int to Fraction
+        public static implicit operator Fraction(int f)
+        {
+            return new Fraction(f);
+        }
+
+        #endregion
     }
 }
