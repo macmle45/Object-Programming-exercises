@@ -106,7 +106,7 @@ namespace Fraction
         //minus
         public static Fraction operator - (Fraction f1, Fraction f2)
         {
-            Fraction result = new Fraction(f1.Numerator * f2.Denominator - f2.Numerator * f1.Denominator);
+            Fraction result = new Fraction(f1.Numerator * f2.Denominator - f2.Numerator * f1.Denominator, f1.Denominator * f2.Denominator);
             result.SimplifyFraction();
             return result;
         }
