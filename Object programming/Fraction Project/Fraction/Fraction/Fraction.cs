@@ -87,5 +87,45 @@ namespace Fraction
                 denominator = Math.Abs(denominator);
             }
         }
+
+        #region Operators
+        //negative
+        public static Fraction operator - (Fraction f)
+        {
+            return new Fraction(-f.Numerator, f.Denominator);
+        }
+
+        //plus
+        public static Fraction operator + (Fraction f1, Fraction f2)
+        {
+            Fraction result = new Fraction(f1.Numerator * f2.Denominator + f2.Numerator * f1.Denominator);
+            result.SimplifyFraction();
+            return result;
+        }
+
+        //minus
+        public static Fraction operator - (Fraction f1, Fraction f2)
+        {
+            Fraction result = new Fraction(f1.Numerator * f2.Denominator - f2.Numerator * f1.Denominator);
+            result.SimplifyFraction();
+            return result;
+        }
+
+        //multiplication
+        public static Fraction operator * (Fraction f1, Fraction f2)
+        {
+            Fraction result = new Fraction(f1.Numerator * f2.Numerator, f1.Denominator * f2.Denominator);
+            result.SimplifyFraction();
+            return result;
+        }
+
+        //divide
+        public static Fraction operator / (Fraction f1, Fraction f2)
+        {
+            Fraction result = new Fraction(f1.Numerator * f2.Denominator, f1.Denominator * f2.Numerator);
+            result.SimplifyFraction();
+            return result;
+        }
+        #endregion
     }
 }
