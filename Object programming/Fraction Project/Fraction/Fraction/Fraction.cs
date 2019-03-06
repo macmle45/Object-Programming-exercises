@@ -49,20 +49,20 @@ namespace Fraction
         //override ToString method
         public override string ToString()
         {
-            return $"{numerator.ToString()}/{denominator.ToString()}";
+            return $"{Numerator.ToString()}/{Denominator.ToString()}";
         }
 
         //converting method
         public double ToDouble()
         {
-            return numerator / (double)denominator;
+            return Numerator / (double)Denominator;
         }
 
         //euclids algorithm
         public void SimplifyFraction()
         {
-            int a = numerator;
-            int b = denominator;
+            int a = Numerator;
+            int b = Denominator;
 
             int c;
             while (b != 0)
@@ -72,19 +72,19 @@ namespace Fraction
                 b = c;
             }
 
-            numerator /= a;
-            denominator /= a;
+            Numerator /= a;
+            Denominator /= a;
 
             //sign
-            if ( numerator * denominator < 0)
+            if ( Numerator * Denominator < 0)
             {
-                numerator = -Math.Abs(numerator);
-                denominator = Math.Abs(denominator);
+                Numerator = -Math.Abs(Numerator);
+                Denominator = Math.Abs(Denominator);
             }
             else
             {
-                numerator = Math.Abs(numerator);
-                denominator = Math.Abs(denominator);
+                Numerator = Math.Abs(Numerator);
+                Denominator = Math.Abs(Denominator);
             }
         }
 

@@ -20,6 +20,8 @@ namespace Fraction
             Console.WriteLine(f2.ToDouble());
             Console.WriteLine(f3.ToString());
 
+            Console.WriteLine((Fraction.Half - Fraction.Quarter).ToString());
+
 
             Console.WriteLine($"\n\n\n>>>\t{Fraction.Info()}\t<<<");
             Console.ReadKey();
