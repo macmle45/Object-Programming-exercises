@@ -16,7 +16,6 @@ namespace Fraction
 
             f3.SimplifyFraction();
 
-            
             Console.WriteLine(f1.ToString());
             Console.WriteLine(f2.ToDouble());
             Console.WriteLine(f3.ToString());

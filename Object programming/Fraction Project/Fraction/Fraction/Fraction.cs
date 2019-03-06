@@ -12,13 +12,26 @@ namespace Fraction
         private int numerator;
         private int denominator;
 
-        //constructor with default argument
-        public Fraction(int numerator, int denominator = 1)
+        //auto-implemented properties
+        public int Numerator { get; set; }
+
+        public int Denominator
         {
-            if (denominator == 0)
-                throw new ArgumentException("Denominator must be greater than zero");
-            this.numerator = numerator;
-            this.denominator = denominator;
+            //lambda notation in properties
+            get => denominator;
+            set
+            {
+                if (value == 0)
+                    throw new ArgumentException("Denominator must be greater than zero");
+                denominator = value;
+            }
+        }
+
+        //constructor with default argument
+        public Fraction(int numerator, int denominator = 1) : this()
+        {
+            Numerator = numerator;
+            Denominator = denominator;
         }
 
         //instances of Fraction struct
