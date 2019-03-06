@@ -26,6 +26,19 @@ namespace Fraction
 
             Console.WriteLine($"Comparison:\t{f2 == f3}");
 
+            //sorting array of fractions
+            Fraction[] fractions_array = new Fraction[10];
+            for (int i = 0; i < 10; i++) fractions_array[i] = new Fraction(1, i+1);
+
+            try
+            {
+                Array.Sort(fractions_array);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+
 
             Console.WriteLine($"\n\n\n>>>\t{Fraction.Info()}\t<<<");
             Console.ReadKey();
