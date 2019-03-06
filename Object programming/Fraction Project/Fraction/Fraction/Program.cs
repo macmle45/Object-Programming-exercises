@@ -30,6 +30,9 @@ namespace Fraction
             Fraction[] fractions_array = new Fraction[10];
             for (int i = 0; i < 10; i++) fractions_array[i] = new Fraction(1, i+1);
 
+            Console.WriteLine("\nBefore sorting:");
+            for (int i = 0; i < 10; i++) Console.WriteLine($"{fractions_array[i]}");
+
             try
             {
                 Array.Sort(fractions_array);
@@ -38,6 +41,9 @@ namespace Fraction
             {
                 Console.WriteLine(exc.Message);
             }
+
+            Console.WriteLine("\nAfter sorting:");
+            for (int i = 0; i < 10; i++) Console.WriteLine($"{fractions_array[i]}");
 
 
             Console.WriteLine($"\n\n\n>>>\t{Fraction.Info()}\t<<<");
