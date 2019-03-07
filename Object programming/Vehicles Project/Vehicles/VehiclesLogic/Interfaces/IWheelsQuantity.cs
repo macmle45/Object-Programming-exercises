@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VehiclesLogic
+namespace VehiclesLogic.Interfaces
 {
-    class Car
+    interface IWheelsQuantity
     {
     }
 }

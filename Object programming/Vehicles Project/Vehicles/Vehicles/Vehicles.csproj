@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE432140-12E0-4D3D-852F-EFA4D3575455}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VehiclesLogic</RootNamespace>
-    <AssemblyName>VehiclesLogic</AssemblyName>
+    <ProjectGuid>{B9C1CB9D-1307-4C1A-8596-6D30C72325B8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Vehicles</RootNamespace>
+    <AssemblyName>Vehicles</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,20 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Derived Classes\Airplane.cs" />
-    <Compile Include="Derived Classes\Car.cs" />
-    <Compile Include="Derived Classes\Glider.cs" />
-    <Compile Include="Derived Classes\Helicopter.cs" />
-    <Compile Include="Derived Classes\Kayak.cs" />
-    <Compile Include="Derived Classes\Motorbike.cs" />
-    <Compile Include="Derived Classes\Motorboat.cs" />
-    <Compile Include="Derived Classes\Skateboard.cs" />
-    <Compile Include="Derived Classes\Submarine.cs" />
-    <Compile Include="Interfaces\IEngine.cs" />
-    <Compile Include="Interfaces\IWheelsQuantity.cs" />
-    <Compile Include="Vehicle.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehiclesLogic\VehiclesLogic.csproj">
+      <Project>{be432140-12e0-4d3d-852f-efa4d3575455}</Project>
+      <Name>VehiclesLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
