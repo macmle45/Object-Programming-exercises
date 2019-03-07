@@ -8,53 +8,44 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle
     {
-        public abstract bool MotionStatus();
-        public abstract double Speed();
-        public abstract string Environment();
+        public abstract string MovingVehicle();
+        public abstract string StoppingVehicle();
 
-        public virtual bool Go
+        public abstract int Faster();
+        public abstract int Slower();
+
+
+
+        public virtual string Go
         {
             get
             {
-                return MotionStatus();
+                return MovingVehicle();
             }
         }
 
-        public virtual bool Stop
+        public virtual string Stop
         {
             get
             {
-                return MotionStatus();
+                return StoppingVehicle();
             }
         }
 
-        public virtual double SpeedUp
+        public virtual int SpeedUp
         {
             get
             {
-                return Speed();
+                return Faster();
             }
         }
 
-        public virtual double SpeedDown
+        public virtual int SpeedDown
         {
             get
             {
-                return Speed();
+                return Slower();
             }
-        }
-
-        public virtual string SetEnvironment
-        {
-            get
-            {
-                return Environment();
-            }
-        }
-
-        public override string ToString()
-        {
-            return $"Motion status: {MotionStatus()}\nSpeed: {Speed()}\nEnvironment: {Environment()}";
         }
     }
 }
