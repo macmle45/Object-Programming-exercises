@@ -7,7 +7,7 @@ using VehiclesLogic.Interfaces;
 
 namespace VehiclesLogic
 {
-    public class Car : Vehicle, IEngine
+    public class Car : Vehicle, IEngine, IWheels
     {
         private readonly string environment = "Land";
         private readonly string name = "Car";
@@ -52,10 +52,11 @@ namespace VehiclesLogic
             get => wheels_quantity;
             set
             {
-                if (value != 3 || value != 4)
-                    wheels_quantity = 4;
-                else
+                if (value == 3 || value == 4)
                     wheels_quantity = value;
+                else
+                    throw new ArgumentException("Quantity of wheels must be 3 or 4");
+                
             }
         }
 
