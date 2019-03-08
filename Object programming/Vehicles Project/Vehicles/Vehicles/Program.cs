@@ -17,7 +17,7 @@ namespace Vehicles
             //my_car.MovingVehicle();
 
             my_car_2.MovingVehicle();
-            my_car_2.Faster();
+            my_car_2.Faster(25);
             
 
             Console.WriteLine(my_car.ToString());

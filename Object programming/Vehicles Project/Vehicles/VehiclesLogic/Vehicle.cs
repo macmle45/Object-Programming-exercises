@@ -8,13 +8,15 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle
     {
+        private int s;
+
         public abstract bool MovingVehicle();
         public abstract bool StoppingVehicle();
 
-        public abstract int Faster();
-        public abstract int Slower();
+        public abstract int Faster(int s);
+        public abstract int Slower(int s);
 
-
+        
 
         public virtual bool Go
         {
@@ -36,7 +38,7 @@ namespace VehiclesLogic
         {
             get
             {
-                return Faster();
+                return Faster(s);
             }
         }
 
@@ -44,7 +46,7 @@ namespace VehiclesLogic
         {
             get
             {
-                return Slower();
+                return Slower(s);
             }
         }
     }

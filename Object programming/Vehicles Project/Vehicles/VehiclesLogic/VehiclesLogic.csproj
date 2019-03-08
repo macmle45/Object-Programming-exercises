@@ -44,12 +44,6 @@
     <Compile Include="Interfaces\IWheels.cs" />
     <Compile Include="Vehicles\Airplane.cs" />
     <Compile Include="Vehicles\Car.cs" />
-    <Compile Include="Vehicles\Glider.cs" />
-    <Compile Include="Vehicles\Helicopter.cs" />
-    <Compile Include="Vehicles\Kayak.cs" />
-    <Compile Include="Vehicles\Motorbike.cs" />
-    <Compile Include="Vehicles\Motorboat.cs" />
-    <Compile Include="Vehicles\Skateboard.cs" />
     <Compile Include="Vehicles\Submarine.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Vehicle.cs" />

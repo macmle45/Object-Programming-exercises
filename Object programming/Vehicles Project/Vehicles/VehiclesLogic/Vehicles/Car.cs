@@ -17,6 +17,7 @@ namespace VehiclesLogic
         private int current_speed;
         private readonly int max_speed = 350;
         private readonly int min_speed = 1;
+        private readonly string speed_units = "km/h";
 
         private int wheels_quantity;
         private string engine_type;
@@ -42,11 +43,12 @@ namespace VehiclesLogic
             EnginePower = engine_power;
         }
 
-        //engine parameters
+        //IEngine method implementations
         public string EngineType { get => engine_type; set => engine_type = value; }
         public string EnginePetrolType { get => engine_petrol_type; set => engine_petrol_type = value; }
         public double EnginePower { get => engine_power; set => engine_power = value; }
 
+        //IWheels method implementations
         public int WheelsQuantity
         {
             get => wheels_quantity;
@@ -62,7 +64,10 @@ namespace VehiclesLogic
 
         public override string ToString()
         {
-            return $"Type: {this.GetType()}\nEnvironment: {environment}\nType name: {name}\nWeight: {weight}kg\nQuantity of wheels: {WheelsQuantity}\nEngine type: {EngineType}\nEngine petrol type: {EnginePetrolType}\nEngine power: {EnginePower}KM\nFuel: {fuel}L\nColor: {color}\nMoving status: {motion_status}\nCurrent speed: {current_speed}km/h\n";
+            return $"Type: {this.GetType()}\nEnvironment: {environment}\nType name: {name}\nWeight: {weight}kg\n" +
+                   $"Quantity of wheels: {WheelsQuantity}\nEngine type: {EngineType}\nEngine petrol type: {EnginePetrolType}\n" +
+                   $"Engine power: {EnginePower}KM\nFuel: {fuel}L\nColor: {color}\nMoving status: {motion_status}\n" +
+                   $"Max speed: {max_speed}{speed_units}\nMin speed: {min_speed}{speed_units}\nCurrent speed: {current_speed}{speed_units}\n";
         }
 
 
@@ -84,13 +89,13 @@ namespace VehiclesLogic
         }
 
         //speedup method
-        public override int Faster()
+        public override int Faster(int step_speed)
         {
             if (current_speed > 0)
             {
                 if (current_speed <= max_speed)
                 {
-                    current_speed += 3;
+                    current_speed += step_speed;
                     return current_speed;
                 }
                 else
@@ -101,11 +106,11 @@ namespace VehiclesLogic
         }
 
         //speeddown method
-        public override int Slower()
+        public override int Slower(int step_speed)
         {
             if (current_speed >= min_speed)
             {
-                current_speed -= 3;
+                current_speed -= step_speed;
                 return current_speed;
             }
             else
