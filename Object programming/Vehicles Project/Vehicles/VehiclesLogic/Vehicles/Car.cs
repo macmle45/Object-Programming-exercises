@@ -9,29 +9,36 @@ namespace VehiclesLogic
 {
     public class Car : Vehicle, IEngine, IWheels
     {
-        private readonly string environment = "Land";
-        private readonly string name = "Car";
+        private bool LandEnv;
+
+        private string name;
         private bool motion_status = false;
 
 
-        private int current_speed;
-        private readonly int max_speed = 350;
-        private readonly int min_speed = 1;
+        private double current_speed;
+        private readonly double max_speed = 350;
+        private readonly double min_speed = 1;
         private readonly string speed_units = "km/h";
 
         private int wheels_quantity;
-        private string engine_type;
-        private string engine_petrol_type;
-        private double engine_power;
 
         private double fuel;
         private double weight;
         private string color;
-        
+
+        //IEngine method implementations
+        //auto-property
+        public string EngineType { get; set; }
+        public string EnginePetrolType { get; set; }
+        public double EnginePower { get; set; }
 
         //constructor with two default arguments
-        public Car(double fuel, double weight, string engine_type, string engine_petrol_type, double engine_power, int wheels_quantity = 4, string color = "black")
+        public Car(string name,  double fuel, double weight, string engine_type, string engine_petrol_type, double engine_power, int wheels_quantity = 4, string color = "black")
         {
+            SetEnvironment("Land", true);
+
+            this.name = name;
+
             this.fuel = fuel;
             this.weight = weight;
             this.color = color;
@@ -42,11 +49,6 @@ namespace VehiclesLogic
             EnginePetrolType = engine_petrol_type;
             EnginePower = engine_power;
         }
-
-        //IEngine method implementations
-        public string EngineType { get => engine_type; set => engine_type = value; }
-        public string EnginePetrolType { get => engine_petrol_type; set => engine_petrol_type = value; }
-        public double EnginePower { get => engine_power; set => engine_power = value; }
 
         //IWheels method implementations
         public int WheelsQuantity
@@ -64,7 +66,7 @@ namespace VehiclesLogic
 
         public override string ToString()
         {
-            return $"Type: {this.GetType()}\nEnvironment: {environment}\nType name: {name}\nWeight: {weight}kg\n" +
+            return $"Type: {base.ToString()}\nEnvironment:\n\tLand: {LandEnv}\nType name: {name}\nWeight: {weight}kg\n" +
                    $"Quantity of wheels: {WheelsQuantity}\nEngine type: {EngineType}\nEngine petrol type: {EnginePetrolType}\n" +
                    $"Engine power: {EnginePower}KM\nFuel: {fuel}L\nColor: {color}\nMoving status: {motion_status}\n" +
                    $"Max speed: {max_speed}{speed_units}\nMin speed: {min_speed}{speed_units}\nCurrent speed: {current_speed}{speed_units}\n";
@@ -89,7 +91,7 @@ namespace VehiclesLogic
         }
 
         //speedup method
-        public override int Faster(int step_speed)
+        public override double Faster(double step_speed)
         {
             if (current_speed > 0)
             {
@@ -106,7 +108,7 @@ namespace VehiclesLogic
         }
 
         //speeddown method
-        public override int Slower(int step_speed)
+        public override double Slower(double step_speed)
         {
             if (current_speed >= min_speed)
             {
@@ -115,6 +117,19 @@ namespace VehiclesLogic
             }
             else
                 return current_speed;
+        }
+
+        //Set environment method
+        protected override bool SetEnvironment(string env, bool option)
+        {
+            switch (env)
+            {
+                case "Land":
+                    LandEnv = option;
+                    return LandEnv;
+            }
+
+            return option;
         }
         #endregion
     }

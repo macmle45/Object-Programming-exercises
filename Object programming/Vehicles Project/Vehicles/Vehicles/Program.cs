@@ -11,19 +11,27 @@ namespace Vehicles
     {
         static void Main(string[] args)
         {
-            Car my_car = new Car(35.6, 1500, "Electric", "Electricity", 150, 4, "blue");
-            Car my_car_2 = new Car(50.7, 2000, "Natural petrol", "Gas", 200, 3, "red");
-
-            //my_car.MovingVehicle();
-
-            my_car_2.MovingVehicle();
-            my_car_2.Faster(25);
             
+            Car my_car = new Car("Ford", 50.7, 2000, "Natural petrol", "Gas", 200, 4);
 
-            Console.WriteLine(my_car.ToString());
-            Console.WriteLine(my_car_2.ToString());
+            my_car.MovingVehicle();
+            my_car.Faster(25);
+            my_car.Slower(7);
 
+            //Console.WriteLine(my_car.ToString());
 
+            Airplane my_airplane = new Airplane("Boeing 737-400", 3000, 30000, "SuperJet", "high-octane petrol", 1500, 6, "white-blue");
+
+            my_airplane.MovingVehicle();
+            my_airplane.Faster(18);
+
+            Console.WriteLine(my_airplane.ToString());
+
+            my_airplane.Faster(300);
+            Console.WriteLine(my_airplane.ToString());
+
+            my_airplane.Slower(70.7);
+            Console.WriteLine(my_airplane.ToString());
 
             Console.ReadKey();
         }

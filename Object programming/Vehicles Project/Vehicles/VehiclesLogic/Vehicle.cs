@@ -8,46 +8,64 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle
     {
-        private int s;
+        private readonly double s = 0;
+        private readonly string env = "Land";
+        private readonly bool option = true;
 
         public abstract bool MovingVehicle();
         public abstract bool StoppingVehicle();
 
-        public abstract int Faster(int s);
-        public abstract int Slower(int s);
+        public abstract double Faster(double s);
+        public abstract double Slower(double s);
 
+        protected abstract bool SetEnvironment(string env, bool option);
         
 
         public virtual bool Go
         {
-            get
-            {
-                return MovingVehicle();
-            }
+            get => MovingVehicle();
         }
 
         public virtual bool Stop
         {
-            get
-            {
-                return StoppingVehicle();
-            }
+            get => StoppingVehicle();
         }
 
-        public virtual int SpeedUp
+        public virtual double SpeedUp
         {
-            get
-            {
-                return Faster(s);
-            }
+            get => Faster(s);
         }
 
-        public virtual int SpeedDown
+        public virtual double SpeedDown
         {
-            get
+            get => Slower(s);
+        }
+
+        public virtual bool Environment
+        {
+            get => SetEnvironment(env, option);
+        }
+
+        //type 0: km/h -> m/s
+        //type 1: m/s -> km/h
+        protected static double SpeedUnitConvert(int type, double s)
+        {
+            
+            switch (type)
             {
-                return Slower(s);
+                case 0:
+                    s = (s * 1000) / 3600;
+                    break;
+                case 1:
+                    s = (s * 3600) / 1000;
+                    break;
             }
+            return s;
+        }
+
+        public override string ToString()
+        {
+            return this.GetType().Name;
         }
     }
 }
