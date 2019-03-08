@@ -8,15 +8,15 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle
     {
-        public abstract string MovingVehicle();
-        public abstract string StoppingVehicle();
+        public abstract bool MovingVehicle();
+        public abstract bool StoppingVehicle();
 
         public abstract int Faster();
         public abstract int Slower();
 
 
 
-        public virtual string Go
+        public virtual bool Go
         {
             get
             {
@@ -24,7 +24,7 @@ namespace VehiclesLogic
             }
         }
 
-        public virtual string Stop
+        public virtual bool Stop
         {
             get
             {

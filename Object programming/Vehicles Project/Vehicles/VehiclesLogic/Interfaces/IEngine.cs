@@ -8,5 +8,8 @@ namespace VehiclesLogic.Interfaces
 {
     interface IEngine
     {
+        string EngineType { get; set; }
+        double EnginePower { get; set; }
+        string EnginePetrolType { get; set; }
     }
 }

@@ -41,17 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Derived Classes\Airplane.cs" />
-    <Compile Include="Derived Classes\Car.cs" />
-    <Compile Include="Derived Classes\Glider.cs" />
-    <Compile Include="Derived Classes\Helicopter.cs" />
-    <Compile Include="Derived Classes\Kayak.cs" />
-    <Compile Include="Derived Classes\Motorbike.cs" />
-    <Compile Include="Derived Classes\Motorboat.cs" />
-    <Compile Include="Derived Classes\Skateboard.cs" />
-    <Compile Include="Derived Classes\Submarine.cs" />
+    <Compile Include="Vehicles\Airplane.cs" />
+    <Compile Include="Vehicles\Car.cs" />
+    <Compile Include="Vehicles\Glider.cs" />
+    <Compile Include="Vehicles\Helicopter.cs" />
+    <Compile Include="Vehicles\Kayak.cs" />
+    <Compile Include="Vehicles\Motorbike.cs" />
+    <Compile Include="Vehicles\Motorboat.cs" />
+    <Compile Include="Vehicles\Skateboard.cs" />
+    <Compile Include="Vehicles\Submarine.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
-    <Compile Include="Interfaces\IWheelsQuantity.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

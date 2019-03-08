@@ -11,14 +11,17 @@ namespace Vehicles
     {
         static void Main(string[] args)
         {
-            Car my_car = new Car(35.6, 1500, "blue");
-
-            Console.WriteLine(my_car.ToString());
+            Car my_car = new Car(35.6, 1500, "Electric", "Electricity", 150, 4, "blue");
+            Car my_car_2 = new Car(50.7, 2000, "Petrol", "Gas", 200, 3, "red");
 
             my_car.MovingVehicle();
-            my_car.Faster();
+
+            my_car_2.MovingVehicle();
+            my_car_2.Faster();
+            
 
             Console.WriteLine(my_car.ToString());
+            Console.WriteLine(my_car_2.ToString());
 
 
 
