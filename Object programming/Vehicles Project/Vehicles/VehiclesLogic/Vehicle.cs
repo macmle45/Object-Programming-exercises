@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VehiclesLogic
 {
-    public abstract class Vehicle
+    public abstract class Vehicle : IComparable<Vehicle>
     {
         private readonly double s = 0;
         private readonly string env = "Land";
@@ -66,6 +66,11 @@ namespace VehiclesLogic
         public override string ToString()
         {
             return this.GetType().Name;
+        }
+
+        public int CompareTo(Vehicle v)
+        {
+            return 0;
         }
     }
 }
