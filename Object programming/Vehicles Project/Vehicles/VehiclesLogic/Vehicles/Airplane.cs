@@ -19,14 +19,14 @@ namespace VehiclesLogic
         private double current_speed;
 
         private double max_speed_air = 200;
-        private double min_speed_air = 20;
+        private static double min_speed_air = 20;
         private readonly string air_speed_unit = "m/s";
 
-        private double max_speed_land;
+        private double max_speed_land = SpeedUnitConvert("Air", "Land", min_speed_air);
         private double min_speed_land = 1;
         private string land_speed_unit = "km/h";
 
-        private string current_speed_unit;
+        private string current_speed_unit = "km/h";
 
         private int wheels_quantity;
 
@@ -35,17 +35,15 @@ namespace VehiclesLogic
         private string color;
 
         //IEngine method implementations
-        //auto-property
+        //auto-implemented properties
         public string EngineType { get; set; }
         public string EnginePetrolType { get; set; }
         public double EnginePower { get; set; }
 
-        //constructor with two default arguments
+        //constructor
         public Airplane(string name, double fuel, double weight, string engine_type, string engine_petrol_type, double engine_power, int wheels_quantity = 3, string color = "black")
         {
             SetEnvironment("Land", true);
-            current_speed_unit = land_speed_unit;
-            max_speed_land = SpeedUnitConvert(1, min_speed_air);
 
             this.name = name;
 
@@ -121,7 +119,7 @@ namespace VehiclesLogic
                 else
                 {
                     //convert km/h -> m/s
-                    double temp_speed = SpeedUnitConvert(0, current_speed + step_speed);
+                    double temp_speed = SpeedUnitConvert("Land", "Air", current_speed + step_speed);
 
                     if(temp_speed > max_speed_air)
                         throw new InvalidOperationException("The step speed is too big | Enter lower step speed value");
@@ -165,7 +163,7 @@ namespace VehiclesLogic
             else
             {
                 //convert m/s -> km/h
-                double temp_speed = SpeedUnitConvert(1, current_speed - step_speed);
+                double temp_speed = SpeedUnitConvert("Air", "Land", current_speed - step_speed);
 
                 if(temp_speed < min_speed_land)
                 {

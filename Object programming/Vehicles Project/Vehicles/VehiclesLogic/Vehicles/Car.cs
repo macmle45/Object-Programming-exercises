@@ -32,7 +32,7 @@ namespace VehiclesLogic
         public string EnginePetrolType { get; set; }
         public double EnginePower { get; set; }
 
-        //constructor with two default arguments
+        //constructor
         public Car(string name,  double fuel, double weight, string engine_type, string engine_petrol_type, double engine_power, int wheels_quantity = 4, string color = "black")
         {
             SetEnvironment("Land", true);

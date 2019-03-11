@@ -8,9 +8,9 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle : IComparable<Vehicle>
     {
-        private readonly double s = 0;
-        private readonly string env = "Land";
-        private readonly bool option = true;
+        private readonly double s;
+        private readonly string env;
+        private readonly bool option;
 
         public abstract bool MovingVehicle();
         public abstract bool StoppingVehicle();
@@ -48,18 +48,19 @@ namespace VehiclesLogic
 
         //type 0: km/h -> m/s
         //type 1: m/s -> km/h
-        protected static double SpeedUnitConvert(int type, double s)
+        protected static double SpeedUnitConvert(string env_from, string env_to, double s)
         {
-            
-            switch (type)
-            {
-                case 0:
-                    s = (s * 1000) / 3600;
-                    break;
-                case 1:
-                    s = (s * 3600) / 1000;
-                    break;
-            }
+            if (env_from == "Land" && env_to == "Air")
+                s = (s * 1000) / 3600;
+            else
+                if (env_from == "Air" && env_to == "Land")
+                s = (s * 3600) / 1000;
+            else
+                    if (env_from == "Land" && env_to == "Water")
+                s /= 1.8519984;
+            else
+                        if (env_from == "Water" && env_to == "Land")
+                s *= 1.8519984;
             return s;
         }
 

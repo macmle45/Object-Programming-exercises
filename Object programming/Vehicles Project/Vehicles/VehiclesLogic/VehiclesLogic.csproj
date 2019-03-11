@@ -43,8 +43,8 @@
   <ItemGroup>
     <Compile Include="Interfaces\IWheels.cs" />
     <Compile Include="Vehicles\Airplane.cs" />
+    <Compile Include="Vehicles\Amphibian.cs" />
     <Compile Include="Vehicles\Car.cs" />
-    <Compile Include="Vehicles\Submarine.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
