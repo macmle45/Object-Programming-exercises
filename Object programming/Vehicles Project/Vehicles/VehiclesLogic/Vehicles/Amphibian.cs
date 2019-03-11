@@ -7,7 +7,7 @@ using VehiclesLogic.Interfaces;
 
 namespace VehiclesLogic
 {
-    class Amphibian : Vehicle, IEngine, IWheels
+    public class Amphibian : Vehicle, IEngine, IWheels
     {
         private bool LandEnv;
         private bool WaterEnv;

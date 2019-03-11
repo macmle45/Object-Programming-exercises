@@ -33,7 +33,8 @@ namespace Vehicles
             my_airplane.Slower(70.7);
             Console.WriteLine(my_airplane.ToString());
 
-            
+            Amphibian my_amphibian = new Amphibian("Amfibia Fireball", 50, 1500, 2000, "V6", 150, 4);
+            Console.WriteLine(my_amphibian.ToString());
 
             Console.ReadKey();
         }
