@@ -76,17 +76,17 @@ namespace VehiclesLogic
 
         public void swimAmphibian()
         {
+            //current_speed = SpeedUnitConvert("Land", "Water", current_speed);
             SetEnvironment("Land", false);
             SetEnvironment("Water", true);
-            current_speed = SpeedUnitConvert("Land", "Water", current_speed);
             current_speed_unit = water_speed_unit;
         }
 
         public void rideAmphibian()
         {
+            //current_speed = SpeedUnitConvert("Water", "Land", current_speed);
             SetEnvironment("Water", false);
             SetEnvironment("Land", true);
-            current_speed = SpeedUnitConvert("Water", "Land", current_speed);
             current_speed_unit = land_speed_unit;
         }
 

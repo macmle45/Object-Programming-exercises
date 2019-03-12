@@ -35,10 +35,18 @@ namespace Vehicles
 
             Amphibian my_amphibian = new Amphibian("Amfibia Fireball", 50, 1500, 2000, "V6", 150, 4);
             my_amphibian.MovingVehicle();
-            my_amphibian.Faster(45);
+            my_amphibian.swimAmphibian();
+            my_amphibian.Faster(20);
+            my_amphibian.Faster(15.5);
+            my_amphibian.rideAmphibian();
+            Console.WriteLine(my_amphibian.ToString());
+
             my_amphibian.swimAmphibian();
             Console.WriteLine(my_amphibian.ToString());
-            my_amphibian.Faster(25);
+
+            my_amphibian.rideAmphibian();
+            my_amphibian.Faster(40);
+            my_amphibian.swimAmphibian();
             Console.WriteLine(my_amphibian.ToString());
 
             Console.ReadKey();

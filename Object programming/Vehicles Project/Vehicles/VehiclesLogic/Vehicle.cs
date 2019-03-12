@@ -51,16 +51,34 @@ namespace VehiclesLogic
         protected static double SpeedUnitConvert(string env_from, string env_to, double s)
         {
             if (env_from == "Land" && env_to == "Air")
+            {
                 s = (s * 1000) / 3600;
+                return s;
+            }
             else
+            {
                 if (env_from == "Air" && env_to == "Land")
-                s = (s * 3600) / 1000;
-            else
+                {
+                    s = (s * 3600) / 1000;
+                    return s;
+                }
+                else
+                {
                     if (env_from == "Land" && env_to == "Water")
-                s /= 1.8519984;
-            else
+                    {
+                        s /= 1.8519984;
+                        return s;
+                    }
+                    else
+                    {
                         if (env_from == "Water" && env_to == "Land")
-                s *= 1.8519984;
+                        {
+                            s *= 1.8519984;
+                            return s;
+                        }
+                    }
+                }  
+            }
             return s;
         }
 
