@@ -108,75 +108,73 @@ namespace VehiclesLogic
         //speedup method
         public override double Faster(double step_speed)
         {
-
-            if (LandEnv)
+            //vehicle must be into motion
+            if (current_speed > 0)
             {
-                if (current_speed + step_speed < max_speed_land)
+                if (LandEnv)
                 {
-                    current_speed += step_speed;
-                    return current_speed;
+                    if (current_speed + step_speed < max_speed_land)
+                    {
+                        current_speed += step_speed;
+                        return current_speed;
+                    }
+                    else
+                    {
+                        //convert km/h -> m/s
+                        double temp_speed = SpeedUnitConvert("Land", "Air", current_speed + step_speed);
+
+                        if (temp_speed > max_speed_air)
+                        {
+                            current_speed_unit = air_speed_unit;
+                            SetEnvironment("Land", false);
+                            SetEnvironment("Air", true);
+                            current_speed = max_speed_air;
+                            return current_speed;
+                        }
+                        else
+                        {
+                            current_speed = temp_speed;
+                            current_speed_unit = air_speed_unit;
+                            SetEnvironment("Land", false);
+                            SetEnvironment("Air", true);
+                            return current_speed;
+                        }
+                    }
                 }
                 else
                 {
-                    //convert km/h -> m/s
-                    double temp_speed = SpeedUnitConvert("Land", "Air", current_speed + step_speed);
-
-                    if(temp_speed > max_speed_air)
-                        throw new InvalidOperationException("The step speed is too big | Enter lower step speed value");
+                    if (current_speed + step_speed > max_speed_air)
+                    {
+                        //throw new InvalidOperationException("The step speed is too big | Enter lower step speed value");
+                        current_speed = max_speed_air;
+                        return current_speed;
+                    }
                     else
                     {
-                        current_speed = temp_speed;
-                        current_speed_unit = air_speed_unit;
-                        SetEnvironment("Land", false);
-                        SetEnvironment("Air", true);
+                        current_speed += step_speed;
                         return current_speed;
                     }
                 }
             }
             else
             {
-                if (current_speed + step_speed > max_speed_air)
-                    throw new InvalidOperationException("The step speed is too big | Enter lower step speed value");
-                else
-                {
-                    current_speed += step_speed;
-                    return current_speed;
-                }
+                //First put the vehicle into motion
+                return 0;
             }
         }
 
         //speeddown method
         public override double Slower(double step_speed)
         {
-            if (LandEnv)
+            //vehicle must be into motion
+            if (current_speed > 0)
             {
-                if(current_speed - step_speed < min_speed_land)
+                if (LandEnv)
                 {
-                    throw new InvalidOperationException("You can't low speed as much");
-                }
-                else
-                {
-                    current_speed -= step_speed;
-                    return current_speed;
-                }
-            }
-            else
-            {
-                //convert m/s -> km/h
-                double temp_speed = SpeedUnitConvert("Air", "Land", current_speed - step_speed);
-
-                if(temp_speed < min_speed_land)
-                {
-                    throw new InvalidOperationException("You can't low speed as much");
-                }
-                else
-                {
-                    if (current_speed - step_speed < min_speed_air)
+                    if (current_speed - step_speed < min_speed_land)
                     {
-                        current_speed = temp_speed;
-                        current_speed_unit = land_speed_unit;
-                        SetEnvironment("Air", false);
-                        SetEnvironment("Land", true);
+                        //throw new InvalidOperationException("You can't low speed as much");
+                        current_speed = min_speed_land;
                         return current_speed;
                     }
                     else
@@ -185,6 +183,42 @@ namespace VehiclesLogic
                         return current_speed;
                     }
                 }
+                else
+                {
+                    //convert m/s -> km/h
+                    double temp_speed = SpeedUnitConvert("Air", "Land", current_speed - step_speed);
+
+                    if (temp_speed < min_speed_land)
+                    {
+                        //throw new InvalidOperationException("You can't low speed as much");
+                        current_speed_unit = land_speed_unit;
+                        SetEnvironment("Air", false);
+                        SetEnvironment("Land", true);
+                        current_speed = min_speed_land;
+                        return current_speed;
+                    }
+                    else
+                    {
+                        if (current_speed - step_speed <= min_speed_air)
+                        {
+                            current_speed = temp_speed;
+                            current_speed_unit = land_speed_unit;
+                            SetEnvironment("Air", false);
+                            SetEnvironment("Land", true);
+                            return current_speed;
+                        }
+                        else
+                        {
+                            current_speed -= step_speed;
+                            return current_speed;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //First put the vehicle into motion
+                return 0;
             }
         }
 

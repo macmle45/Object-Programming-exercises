@@ -93,30 +93,49 @@ namespace VehiclesLogic
         //speedup method
         public override double Faster(double step_speed)
         {
+            //vehicle must be into motion
             if (current_speed > 0)
             {
-                if (current_speed <= max_speed)
+                if (current_speed + step_speed <= max_speed)
                 {
                     current_speed += step_speed;
                     return current_speed;
                 }
                 else
+                {
+                    current_speed = max_speed;
                     return current_speed;
+                }
             }
             else
+            {
+                //First put the vehicle into motion
                 return 0;
+            }
         }
 
         //speeddown method
         public override double Slower(double step_speed)
         {
-            if (current_speed >= min_speed)
+            //vehicle must be into motion
+            if (current_speed > 0)
             {
-                current_speed -= step_speed;
-                return current_speed;
+                if (current_speed - step_speed >= min_speed)
+                {
+                    current_speed -= step_speed;
+                    return current_speed;
+                }
+                else
+                {
+                    current_speed = min_speed;
+                    return current_speed;
+                }
             }
             else
-                return current_speed;
+            {
+                //First put the vehicle into motion
+                return 0;
+            }
         }
 
         //Set environment method

@@ -34,6 +34,11 @@ namespace Vehicles
             Console.WriteLine(my_airplane.ToString());
 
             Amphibian my_amphibian = new Amphibian("Amfibia Fireball", 50, 1500, 2000, "V6", 150, 4);
+            my_amphibian.MovingVehicle();
+            my_amphibian.Faster(45);
+            my_amphibian.swimAmphibian();
+            Console.WriteLine(my_amphibian.ToString());
+            my_amphibian.Faster(25);
             Console.WriteLine(my_amphibian.ToString());
 
             Console.ReadKey();

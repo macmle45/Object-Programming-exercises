@@ -92,7 +92,7 @@ namespace VehiclesLogic
 
         public override string ToString()
         {
-            return $"Type: {base.ToString()}\nEnvironment:\n\tLand: {LandEnv}\n\tWater: {WaterEnv}\nType name: {name}\nWeight: {weight}kg\nDisplacement: {displacement}\n" +
+            return $"Type: {base.ToString()}\nEnvironment:\n\tLand: {LandEnv}\n\tWater: {WaterEnv}\nType name: {name}\nWeight: {weight}kg\nDisplacement: {displacement}kg\n" +
                    $"Quantity of wheels: {WheelsQuantity}\nEngine type: {EngineType}\nEngine petrol type: {EnginePetrolType}\n" +
                    $"Engine power: {EnginePower}KM\nFuel: {fuel}L\nColor: {color}\nMoving status: {motion_status}\n" +
                    $"Max speed (land): {max_speed_land}{land_speed_unit}\nMin speed (land): {min_speed_land}{land_speed_unit}\n" +
@@ -121,7 +121,8 @@ namespace VehiclesLogic
         //speedup method
         public override double Faster(double step_speed)
         {
-            if(current_speed > 0)
+            //vehicle must be into motion
+            if (current_speed > 0)
             {
                 if (LandEnv)
                 {
@@ -131,7 +132,10 @@ namespace VehiclesLogic
                         return current_speed;
                     }
                     else
-                        return max_speed_land;
+                    {
+                        current_speed = max_speed_land;
+                        return current_speed;
+                    } 
                 }
                 else
                 {
@@ -141,7 +145,10 @@ namespace VehiclesLogic
                         return current_speed;
                     }
                     else
-                        return max_speed_water;
+                    {
+                        current_speed = max_speed_water;
+                        return current_speed;
+                    }
                 }
             }
             else
@@ -155,6 +162,7 @@ namespace VehiclesLogic
         //speeddown method
         public override double Slower(double step_speed)
         {
+            //vehicle must be into motion
             if (current_speed > 0)
             {
                 if (LandEnv)
@@ -165,7 +173,10 @@ namespace VehiclesLogic
                         return current_speed;
                     }
                     else
-                        return min_speed_land;
+                    {
+                        current_speed = min_speed_land;
+                        return current_speed;
+                    }
                 }
                 else
                 {
@@ -175,7 +186,10 @@ namespace VehiclesLogic
                         return current_speed;
                     }
                     else
-                        return min_speed_water;
+                    {
+                        current_speed = min_speed_water;
+                        return current_speed;
+                    }
                 }
             }
             else
