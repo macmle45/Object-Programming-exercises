@@ -39,7 +39,7 @@ namespace VehiclesLogic
         //constructor
         public Amphibian(string name, double fuel, double weight, double displacement, string engine_type, double engine_power, int wheels_quantity = 4, string color = "red")
         {
-            SetEnvironment("Land", true);
+            LandEnv = true;
 
             this.name = name;
 
@@ -202,15 +202,37 @@ namespace VehiclesLogic
         //Set environment method
         protected override bool SetEnvironment(string env, bool option)
         {
-            switch (env)
+            if(LandEnv && WaterEnv)
             {
-                case "Land":
+                //vehicle can not be in two environments simultaneously
+                return false;
+            }
+            else
+            {
+                if (env=="Land" && option)
+                {
+                    current_speed = SpeedUnitConvert("Water", "Land", current_speed);
+                    current_speed_unit = land_speed_unit;
+                    WaterEnv = false;
                     LandEnv = option;
                     return LandEnv;
+                }
+                else
+                {
+                    if(env=="Water" && option)
+                    {  
+                        double temp_speed = SpeedUnitConvert("Land", "Water", current_speed);
+                        if (temp_speed > max_speed_water)
+                            current_speed = max_speed_water;
+                        else
+                            current_speed = temp_speed;
 
-                case "Water":
-                    WaterEnv = option;
-                    return WaterEnv;
+                        current_speed_unit = water_speed_unit;
+                        LandEnv = false;
+                        WaterEnv = option;
+                        return LandEnv;
+                    }
+                }
             }
 
             return option;
