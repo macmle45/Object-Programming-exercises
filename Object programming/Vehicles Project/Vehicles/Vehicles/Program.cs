@@ -12,54 +12,69 @@ namespace Vehicles
         static void Main(string[] args)
         {
             
-            Car my_car = new Car("Ford", 50.7, 2000, "Natural petrol", "Gas", 200, 4);
+            Car ford = new Car("Ford Focus", 50.7, 2000, "Natural petrol", "Gas", 200, 4);
+            ford.MovingVehicle();
+            ford.Faster(159);
 
-            my_car.MovingVehicle();
-            my_car.Faster(200);
-           
+            Car volkswagen = new Car("Volkswagen Golf", 30, 1500, "Natural petrol", "Benzine", 130, 4);
+            volkswagen.MovingVehicle();
+            volkswagen.Faster(54);
 
-            Airplane my_airplane = new Airplane("Boeing 737-400", 3000, 30000, "SuperJet", "high-octane petrol", 1500, 6, "white-blue");
+            Airplane boeing = new Airplane("Boeing 737-400", 3000, 30000, "SuperJet", "high-octane petrol", 1500, 6, "white-blue");
+            boeing.MovingVehicle();
+            boeing.Faster(300);
 
-            my_airplane.MovingVehicle();
-            my_airplane.Faster(300);
+            Airplane airbus = new Airplane("Airbus A320", 3000, 30000, "SuperJet", "high-octane petrol", 2500, 6, "white-red");
+            airbus.MovingVehicle();
+            airbus.Faster(30);
 
-            //Console.WriteLine(my_airplane.ToString());
+            Amphibian amphibia_basic = new Amphibian("Amfibia Normal", 50, 1500, 2000, "V6", 150, 4);
+            amphibia_basic.MovingVehicle();
+            amphibia_basic.Faster(195);
 
-            Amphibian my_amphibian = new Amphibian("Amfibia Fireball", 50, 1500, 2000, "V6", 150, 4);
-            my_amphibian.MovingVehicle();
-            my_amphibian.Faster(195);
-            
-            Console.WriteLine(my_amphibian.Environment);
-
-            my_amphibian.swimAmphibian();
-            Console.WriteLine(my_amphibian.Environment);
-            //Console.WriteLine(my_amphibian.ToString());
-
-
+            Amphibian amphibia_turbo = new Amphibian("Amfibia Turbo", 50, 2000, 2800, "V8", 250, 4);
+            amphibia_turbo.MovingVehicle();
+            amphibia_turbo.Faster(100);
+            amphibia_turbo.swimAmphibian();
 
 
             //creating list of Vehicles
-            List<Vehicle> vehicles = new List<Vehicle>(3);
+            List<Vehicle> vehicles = new List<Vehicle>();
 
             //added vehicles to list
-            vehicles.Add(my_car);
-            vehicles.Add(my_airplane);
-            vehicles.Add(my_amphibian);
+            vehicles.Add(ford);
+            vehicles.Add(volkswagen);
+            vehicles.Add(boeing);
+            vehicles.Add(airbus);
+            vehicles.Add(amphibia_basic);
+            vehicles.Add(amphibia_turbo);
 
-            Console.WriteLine("Content of list before sorting:\n");
-
+            Console.WriteLine("Original order in list vehicles:\n");
             for(int i= 0; i < vehicles.Count; i++)
             {
                 Console.WriteLine($"Type: {vehicles[i].GetType().Name}\nName: {vehicles[i].Name}\nSpeed: {vehicles[i].Speed} km/h\n");
             }
 
-            Console.WriteLine("-------------------------------\nContent of list after sorting:\n");
+            Console.WriteLine("-------------------------------\nOnly land vehicles:\n");
+            for (int i = 0; i < vehicles.Count; i++)
+            {
+                if(vehicles[i].Environment == "Land")
+                    Console.WriteLine($"Type: {vehicles[i].GetType().Name}\nName: {vehicles[i].Name}\nSpeed: {vehicles[i].Speed} km/h\n");
+            }
 
+            Console.WriteLine("-------------------------------\nAll vehicles after sorting (ASC | speed):\n");
             vehicles.Sort();
-
             for (int i = 0; i < vehicles.Count; i++)
             {
                 Console.WriteLine($"Type: {vehicles[i].GetType().Name}\nName: {vehicles[i].Name}\nSpeed: {vehicles[i].Speed} km/h\n");
+            }
+
+            Console.WriteLine("-------------------------------\nOnly land vehicles after sorting (DESC | speed):\n");
+            vehicles.Sort((a, b) => -1 * a.CompareTo(b));
+            for (int i = 0; i < vehicles.Count; i++)
+            {
+                if (vehicles[i].Environment == "Land")
+                    Console.WriteLine($"Type: {vehicles[i].GetType().Name}\nName: {vehicles[i].Name}\nSpeed: {vehicles[i].Speed} km/h\n");
             }
 
             Console.ReadKey();
