@@ -20,7 +20,7 @@ namespace VehiclesLogic
         public abstract double Faster(double s);
         public abstract double Slower(double s);
 
-        public abstract bool SetEnvironment(string env, bool option);
+        public abstract string SetEnvironment(string env, bool option);
 
         public abstract double GetSpeed();
 
@@ -49,7 +49,7 @@ namespace VehiclesLogic
             get => Slower(s);
         }
 
-        public virtual bool Environment
+        public virtual string Environment
         {
             get => SetEnvironment(env, option);
         }

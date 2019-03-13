@@ -23,17 +23,20 @@ namespace Vehicles
             my_airplane.MovingVehicle();
             my_airplane.Faster(300);
 
-            Console.WriteLine(my_airplane.ToString());
+            //Console.WriteLine(my_airplane.ToString());
 
             Amphibian my_amphibian = new Amphibian("Amfibia Fireball", 50, 1500, 2000, "V6", 150, 4);
             my_amphibian.MovingVehicle();
             my_amphibian.Faster(195);
+            
+            Console.WriteLine(my_amphibian.Environment);
+
             my_amphibian.swimAmphibian();
+            Console.WriteLine(my_amphibian.Environment);
+            //Console.WriteLine(my_amphibian.ToString());
 
-            Console.WriteLine(my_amphibian.ToString());
 
-            
-            
+
 
             //creating list of Vehicles
             List<Vehicle> vehicles = new List<Vehicle>(3);

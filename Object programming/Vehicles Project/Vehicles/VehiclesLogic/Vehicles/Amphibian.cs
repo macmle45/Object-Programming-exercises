@@ -205,12 +205,12 @@ namespace VehiclesLogic
         }
 
         //Set environment method
-        public override bool SetEnvironment(string env, bool option)
+        public override string SetEnvironment(string env, bool option)
         {
             if(LandEnv && WaterEnv)
             {
                 //vehicle can not be in two environments simultaneously
-                return false;
+                return null;
             }
             else
             {
@@ -221,7 +221,7 @@ namespace VehiclesLogic
                     temp_speed_unit = current_speed_unit;
                     WaterEnv = false;
                     LandEnv = option;
-                    return LandEnv;
+                    //return LandEnv;
                 }
                 else
                 {
@@ -237,12 +237,15 @@ namespace VehiclesLogic
                         temp_speed_unit = current_speed_unit;
                         LandEnv = false;
                         WaterEnv = option;
-                        return LandEnv;
+                        //return LandEnv;
                     }
                 }
             }
 
-            return option;
+            if (LandEnv)
+                return "Land";
+            else
+                return "Water";
         }
 
         public override double GetSpeed()

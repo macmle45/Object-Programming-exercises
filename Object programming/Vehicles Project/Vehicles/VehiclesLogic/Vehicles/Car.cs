@@ -145,16 +145,16 @@ namespace VehiclesLogic
         }
 
         //Set environment method
-        public override bool SetEnvironment(string env, bool option)
+        public override string SetEnvironment(string env, bool option)
         {
             switch (env)
             {
                 case "Land":
                     LandEnv = option;
-                    return LandEnv;
+                    break;
             }
 
-            return option;
+            return "Land";
         }
 
         //units: km/h
