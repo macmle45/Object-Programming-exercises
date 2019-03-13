@@ -12,6 +12,9 @@ namespace VehiclesLogic
         private bool LandEnv;
         private bool WaterEnv;
 
+        //for converting speed to comparing
+        private string temp_speed_unit;
+
         private string name;
         private bool motion_status = false;
         private double displacement;
@@ -40,6 +43,7 @@ namespace VehiclesLogic
         public Amphibian(string name, double fuel, double weight, double displacement, string engine_type, double engine_power, int wheels_quantity = 4, string color = "red")
         {
             LandEnv = true;
+            temp_speed_unit = current_speed_unit;
 
             this.name = name;
 
@@ -76,18 +80,14 @@ namespace VehiclesLogic
 
         public void swimAmphibian()
         {
-            //current_speed = SpeedUnitConvert("Land", "Water", current_speed);
             SetEnvironment("Land", false);
             SetEnvironment("Water", true);
-            current_speed_unit = water_speed_unit;
         }
 
         public void rideAmphibian()
         {
-            //current_speed = SpeedUnitConvert("Water", "Land", current_speed);
             SetEnvironment("Water", false);
             SetEnvironment("Land", true);
-            current_speed_unit = land_speed_unit;
         }
 
         public override string ToString()
@@ -101,7 +101,12 @@ namespace VehiclesLogic
         }
 
         #region overridden methods from Vehicle base class
-
+        //
+        public override string GetName()
+        {
+            return name;
+        }
+    
         //start moving method
         public override bool MovingVehicle()
         {
@@ -200,7 +205,7 @@ namespace VehiclesLogic
         }
 
         //Set environment method
-        protected override bool SetEnvironment(string env, bool option)
+        public override bool SetEnvironment(string env, bool option)
         {
             if(LandEnv && WaterEnv)
             {
@@ -213,6 +218,7 @@ namespace VehiclesLogic
                 {
                     current_speed = SpeedUnitConvert("Water", "Land", current_speed);
                     current_speed_unit = land_speed_unit;
+                    temp_speed_unit = current_speed_unit;
                     WaterEnv = false;
                     LandEnv = option;
                     return LandEnv;
@@ -228,6 +234,7 @@ namespace VehiclesLogic
                             current_speed = temp_speed;
 
                         current_speed_unit = water_speed_unit;
+                        temp_speed_unit = current_speed_unit;
                         LandEnv = false;
                         WaterEnv = option;
                         return LandEnv;
@@ -236,6 +243,21 @@ namespace VehiclesLogic
             }
 
             return option;
+        }
+
+        public override double GetSpeed()
+        {
+            //convert units to km/h
+            if (temp_speed_unit == "km/h") 
+            {
+                return current_speed;
+            }
+            else
+            {
+                current_speed = SpeedUnitConvert("Water", "Land", current_speed);
+                temp_speed_unit = "km/h";
+                return current_speed;
+            }
         }
 
         #endregion

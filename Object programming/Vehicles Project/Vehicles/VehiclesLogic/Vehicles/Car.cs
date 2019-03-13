@@ -13,7 +13,7 @@ namespace VehiclesLogic
 
         private string name;
         private bool motion_status = false;
-
+        public int abc;
 
         private double current_speed;
         private readonly double max_speed = 350;
@@ -74,6 +74,12 @@ namespace VehiclesLogic
 
 
         #region overridden methods from Vehicle base class
+        //
+        public override string GetName()
+        {
+            return name;
+        }
+
         //start moving method
         public override bool MovingVehicle()
         {
@@ -139,7 +145,7 @@ namespace VehiclesLogic
         }
 
         //Set environment method
-        protected override bool SetEnvironment(string env, bool option)
+        public override bool SetEnvironment(string env, bool option)
         {
             switch (env)
             {
@@ -149,6 +155,12 @@ namespace VehiclesLogic
             }
 
             return option;
+        }
+
+        //units: km/h
+        public override double GetSpeed()
+        {
+            return current_speed;
         }
         #endregion
     }

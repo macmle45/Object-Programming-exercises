@@ -12,6 +12,11 @@ namespace VehiclesLogic
         private bool LandEnv;
         private bool AirEnv;
 
+        //for converting speed to comparing
+        private bool speed_checked;
+        private bool temp_env;
+        private string temp_speed_unit;
+
         private string name;
         private bool motion_status = false;
 
@@ -44,6 +49,7 @@ namespace VehiclesLogic
         public Airplane(string name, double fuel, double weight, string engine_type, string engine_petrol_type, double engine_power, int wheels_quantity = 3, string color = "black")
         {
             SetEnvironment("Land", true);
+            temp_speed_unit = current_speed_unit;
 
             this.name = name;
 
@@ -82,6 +88,12 @@ namespace VehiclesLogic
         }
 
         #region overridden methods from Vehicle base class
+        //
+        public override string GetName()
+        {
+            return name;
+        }
+
         //start moving method
         public override bool MovingVehicle()
         {
@@ -126,6 +138,7 @@ namespace VehiclesLogic
                         if (temp_speed > max_speed_air)
                         {
                             current_speed_unit = air_speed_unit;
+                            temp_speed_unit = current_speed_unit;
                             SetEnvironment("Land", false);
                             SetEnvironment("Air", true);
                             current_speed = max_speed_air;
@@ -135,6 +148,7 @@ namespace VehiclesLogic
                         {
                             current_speed = temp_speed;
                             current_speed_unit = air_speed_unit;
+                            temp_speed_unit = current_speed_unit;
                             SetEnvironment("Land", false);
                             SetEnvironment("Air", true);
                             return current_speed;
@@ -192,6 +206,7 @@ namespace VehiclesLogic
                     {
                         //throw new InvalidOperationException("You can't low speed as much");
                         current_speed_unit = land_speed_unit;
+                        temp_speed_unit = current_speed_unit;
                         SetEnvironment("Air", false);
                         SetEnvironment("Land", true);
                         current_speed = min_speed_land;
@@ -203,6 +218,7 @@ namespace VehiclesLogic
                         {
                             current_speed = temp_speed;
                             current_speed_unit = land_speed_unit;
+                            temp_speed_unit = current_speed_unit;
                             SetEnvironment("Air", false);
                             SetEnvironment("Land", true);
                             return current_speed;
@@ -223,7 +239,7 @@ namespace VehiclesLogic
         }
 
         //Set environment method
-        protected override bool SetEnvironment(string env, bool option)
+        public override bool SetEnvironment(string env, bool option)
         {
             switch (env)
             {
@@ -237,6 +253,21 @@ namespace VehiclesLogic
             }
 
             return option;
+        }
+
+        public override double GetSpeed()
+        {
+            //convert units to km/h
+            if (temp_speed_unit == "km/h")
+            {
+                return current_speed;
+            }
+            else
+            {
+                current_speed = SpeedUnitConvert("Air", "Land", current_speed);
+                temp_speed_unit = "km/h";
+                return current_speed;
+            }
         }
         #endregion
     }

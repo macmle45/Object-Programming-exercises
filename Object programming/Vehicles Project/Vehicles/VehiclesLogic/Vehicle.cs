@@ -8,9 +8,11 @@ namespace VehiclesLogic
 {
     public abstract class Vehicle : IComparable<Vehicle>
     {
-        private readonly double s;
+        protected double s;
         private readonly string env;
         private readonly bool option;
+
+        public abstract string GetName();
 
         public abstract bool MovingVehicle();
         public abstract bool StoppingVehicle();
@@ -18,8 +20,14 @@ namespace VehiclesLogic
         public abstract double Faster(double s);
         public abstract double Slower(double s);
 
-        protected abstract bool SetEnvironment(string env, bool option);
-        
+        public abstract bool SetEnvironment(string env, bool option);
+
+        public abstract double GetSpeed();
+
+        public virtual string Name
+        {
+            get => GetName();
+        }
 
         public virtual bool Go
         {
@@ -44,6 +52,11 @@ namespace VehiclesLogic
         public virtual bool Environment
         {
             get => SetEnvironment(env, option);
+        }
+
+        public virtual double Speed
+        {
+            get => GetSpeed();
         }
 
         //type 0: km/h -> m/s
@@ -89,7 +102,9 @@ namespace VehiclesLogic
 
         public int CompareTo(Vehicle v)
         {
-            return 0;
+            double diff = this.Speed - v.Speed;
+            if (diff != 0) diff /= Math.Abs(diff);
+            return (int)(diff);
         }
     }
 }
