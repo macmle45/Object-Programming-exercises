@@ -63,14 +63,20 @@ namespace Vehicles
             }
 
             Console.WriteLine("-------------------------------\nAll vehicles after sorting (ASC | speed):\n");
+
+            //sorting
             vehicles.Sort();
+
             for (int i = 0; i < vehicles.Count; i++)
             {
                 Console.WriteLine($"Type: {vehicles[i].GetType().Name}\nName: {vehicles[i].Name}\nSpeed: {vehicles[i].Speed} km/h\n");
             }
 
             Console.WriteLine("-------------------------------\nOnly land vehicles after sorting (DESC | speed):\n");
+
+            //sorting
             vehicles.Sort((a, b) => -1 * a.CompareTo(b));
+
             for (int i = 0; i < vehicles.Count; i++)
             {
                 if (vehicles[i].Environment == "Land")
