@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TimePeriod Logic\TimePeriod Logic.csproj">
+      <Project>{a7b8728b-1c79-4ce1-aa2c-063be893af97}</Project>
+      <Name>TimePeriod Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
