@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace TimePeriod_Logic
 {
@@ -37,7 +39,7 @@ namespace TimePeriod_Logic
         //constructor for string-parameter option ("hh:mm:ss")
         public Time(string t)
         {
-            if (t.Length > 8)
+            if (t.Length > 8 || t.Length == 0)
                 throw new ArgumentException("Invalid argument. Correct argument: 'hh:mm:ss'.");
             else
             {
@@ -60,11 +62,18 @@ namespace TimePeriod_Logic
             return $"{Hours}:{Minutes}:{Seconds}";
         }
 
+        //public override byte 
+
         public override bool Equals(object t)
         {
             if (t == null || this.GetType() != t.GetType()) return false;
 
             return (this.Hours == ((Time)t).Hours && this.Minutes == ((Time)t).Minutes && this.Seconds == ((Time)t).Seconds);
+        }
+
+        public override int GetHashCode()
+        {
+            return Minutes ^ Seconds;
         }
 
         #region interfaces implementation
@@ -79,7 +88,7 @@ namespace TimePeriod_Logic
         }
         #endregion
 
-        #region overriding operators
+        #region overriding logic operators
 
         public static bool operator ==(Time t1, Time t2)
         {
@@ -89,6 +98,59 @@ namespace TimePeriod_Logic
         public static bool operator !=(Time t1, Time t2)
         {
             return !t1.Equals(t2);
+        }
+
+        public static bool operator <(Time t1, Time t2)
+        {
+            int t1_sum = t1.Seconds + (t1.Minutes * 60) + (t1.Hours * 3600);
+            int t2_sum = t2.Seconds + (t2.Minutes * 60) + (t2.Hours * 3600);
+
+            if (t1_sum < t2_sum)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator <=(Time t1, Time t2)
+        {
+            int t1_sum = t1.Seconds + (t1.Minutes * 60) + (t1.Hours * 3600);
+            int t2_sum = t2.Seconds + (t2.Minutes * 60) + (t2.Hours * 3600);
+
+            if (t1_sum <= t2_sum)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator >(Time t1, Time t2)
+        {
+            int t1_sum = t1.Seconds + (t1.Minutes * 60) + (t1.Hours * 3600);
+            int t2_sum = t2.Seconds + (t2.Minutes * 60) + (t2.Hours * 3600);
+
+            if (t1_sum > t2_sum)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator >=(Time t1, Time t2)
+        {
+            int t1_sum = t1.Seconds + (t1.Minutes * 60) + (t1.Hours * 3600);
+            int t2_sum = t2.Seconds + (t2.Minutes * 60) + (t2.Hours * 3600);
+
+            if (t1_sum >= t2_sum)
+                return true;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region overriding arithmetic operators
+
+        public static TimePeriod operator +(Time t, TimePeriod tp)
+        {
+            
         }
 
         #endregion
